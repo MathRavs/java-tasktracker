@@ -1,2 +1,65 @@
-.idea
-target/
+# Ignorer les fichiers et dossiers générés par Maven
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/timing.properties
+
+# Ignorer les fichiers de configuration des IDE
+/.idea/
+/*.iml
+/.project
+/.classpath
+/.settings/
+/.vscode/
+
+# Ignorer les fichiers systèmes
+.DS_Store
+Thumbs.db
+
+# Ignorer les fichiers de logs
+/log/
+/logs/
+*.log
+
+# Ignorer les fichiers de compilation Java
+*.class
+
+# Ignorer les fichiers générés par les tests
+/test-output/
+/surefire-reports/
+/failsafe-reports/
+
+# Ignorer les fichiers temporaires ou de build
+*.war
+*.ear
+*.jar
+*.tar.gz
+*.zip
+
+# Ignorer les fichiers liés à l'environnement
+.env
+*.env
+
+# Ignorer les fichiers de cache ou autres temporaires
+/.cache/
+/.tmp/
+/tmp/
+*.swp
+*.bak
+*.orig
+
+# Ignorer les dépendances locales (ex: les jars téléchargés manuellement)
+/lib/
+
+# Ignorer les fichiers générés pour le profiling
+*.hprof
+
+# Ignorer les fichiers spécifiques à l'OS ou à des outils externes
+*.pid
+*.out
+
+# Ignorer les fichiers liés à l'IDE Eclipse
+/.factorypath
+
+# Ignorer les configurations spécifiques à des outils de CI/CD
+/.gitlab-ci.yml
+/.travis.yml
