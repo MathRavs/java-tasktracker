@@ -1,12 +1,14 @@
 package cypher.tasktracker.runner.core;
 
-import java.util.Scanner;
+import cypher.tasktracker.services.UserInputService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class AbstractTaskExecutor {
-    protected Scanner scanner;
+    protected final UserInputService userInputService;
 
-    protected AbstractTaskExecutor(final Scanner scanner){
-        this.scanner = scanner;
+    @Autowired
+    protected AbstractTaskExecutor(final UserInputService userInputService){
+        this.userInputService = userInputService;
     }
 
     protected abstract void execute();

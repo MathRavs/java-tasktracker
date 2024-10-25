@@ -1,12 +1,15 @@
 package cypher.tasktracker.runner.TaskUpdateExecution;
 
 import cypher.tasktracker.runner.core.AbstractTaskExecutor;
+import cypher.tasktracker.services.UserInputService;
+import org.springframework.stereotype.Component;
 
-import java.util.Scanner;
 
+@Component
 public class TaskUpdateExecutor extends AbstractTaskExecutor {
-    public TaskUpdateExecutor(Scanner scanner) {
-        super(scanner);
+
+    protected TaskUpdateExecutor(final UserInputService userInputService) {
+        super(userInputService);
     }
 
     @Override
