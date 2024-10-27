@@ -1,4 +1,4 @@
-package cypher.tasktracker.services;
+package cypher.tasktracker.services.ui;
 
 import org.springframework.stereotype.Service;
 

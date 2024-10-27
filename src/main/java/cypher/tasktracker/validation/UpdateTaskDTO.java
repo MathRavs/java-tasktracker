@@ -25,8 +25,8 @@ public class UpdateTaskDTO {
         this.id = id;
     }
 
-    public String getId() {
-        return id;
+    public Long getId() {
+        return id != null ? Long.parseLong(id) : null;
     }
 
     public void setId(String id) {

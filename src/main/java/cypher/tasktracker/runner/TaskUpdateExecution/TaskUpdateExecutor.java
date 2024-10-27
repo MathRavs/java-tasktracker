@@ -1,7 +1,7 @@
 package cypher.tasktracker.runner.TaskUpdateExecution;
 
 import cypher.tasktracker.runner.core.AbstractTaskExecutor;
-import cypher.tasktracker.services.UserInputService;
+import cypher.tasktracker.services.ui.UserInputService;
 import org.springframework.stereotype.Component;
 
 

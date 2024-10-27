@@ -5,7 +5,7 @@ import cypher.tasktracker.runner.TaskDeleteExecution.TaskDeleteExecutor;
 import cypher.tasktracker.runner.TaskListExecution.TaskListExecutor;
 import cypher.tasktracker.runner.TaskUpdateExecution.TaskUpdateExecutor;
 import cypher.tasktracker.runner.core.AbstractTaskExecutor;
-import cypher.tasktracker.services.UserInputService;
+import cypher.tasktracker.services.ui.UserInputService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -60,16 +60,15 @@ public class TaskMenuExecutor extends AbstractTaskExecutor {
         actionsMap.put("4", taskUpdateExecutor::execute);
         actionsMap.put("5", () -> SpringApplication.exit(context, () -> 0));
 
-        if(actionsMap.containsKey(action)){
+        if (actionsMap.containsKey(action)) {
             actionsMap.get(action).run();
-        }
-        else {
+        } else {
             LOG.info("Invalid action ID");
         }
     }
 
-    private void displayChoices(String...choices){
-        for(int i = 0; i < choices.length; i++){
+    private void displayChoices(String... choices) {
+        for (int i = 0; i < choices.length; i++) {
             StringBuilder stringBuilder = new StringBuilder()
                     .append(i + 1)
                     .append(". ")

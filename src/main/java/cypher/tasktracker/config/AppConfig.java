@@ -17,6 +17,7 @@ public class AppConfig {
         return scanner;
     }
 
+
     @PreDestroy // This method will be called on application shutdown
     public void cleanUp() {
         if (scanner != null) {
