@@ -5,6 +5,8 @@ import cypher.tasktracker.runner.TaskDeleteExecution.TaskDeleteExecutor;
 import cypher.tasktracker.runner.TaskListExecution.TaskListExecutor;
 import cypher.tasktracker.runner.TaskUpdateExecution.TaskUpdateExecutor;
 import cypher.tasktracker.runner.core.AbstractTaskExecutor;
+import cypher.tasktracker.runner.utils.DisplayUtils;
+import cypher.tasktracker.services.data.TaskService;
 import cypher.tasktracker.services.ui.UserInputService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +30,7 @@ public class TaskMenuExecutor extends AbstractTaskExecutor {
 
 
     private final String[] actionList = {"List tasks", "Add a task", "Delete a task", "Update a task", "Exit"};
+    private final TaskService taskService;
 
     public TaskMenuExecutor(
             final UserInputService userInputService,
@@ -35,20 +38,22 @@ public class TaskMenuExecutor extends AbstractTaskExecutor {
             final TaskDeleteExecutor taskDeleteExecutor,
             final TaskUpdateExecutor taskUpdateExecutor,
             final TaskListExecutor taskListExecutor,
-            final ConfigurableApplicationContext configurableApplicationContext
-    ) {
+            final ConfigurableApplicationContext configurableApplicationContext,
+            final TaskService taskService) {
         super(userInputService);
         this.addTaskExecutor = addTaskExecutor;
         this.taskDeleteExecutor = taskDeleteExecutor;
         this.taskUpdateExecutor = taskUpdateExecutor;
         this.taskListExecutor = taskListExecutor;
         this.context = configurableApplicationContext;
+        this.taskService = taskService;
     }
 
     @Override
     public void execute() {
+
         LOG.info("What do you want to do ? ");
-        this.displayChoices(this.actionList);
+        DisplayUtils.displayChoices(this.actionList);
 
         String action = this.userInputService.getUserInput();
 
@@ -64,17 +69,6 @@ public class TaskMenuExecutor extends AbstractTaskExecutor {
             actionsMap.get(action).run();
         } else {
             LOG.info("Invalid action ID");
-        }
-    }
-
-    private void displayChoices(String... choices) {
-        for (int i = 0; i < choices.length; i++) {
-            StringBuilder stringBuilder = new StringBuilder()
-                    .append(i + 1)
-                    .append(". ")
-                    .append(choices[i]);
-
-            LOG.info(stringBuilder.toString());
         }
     }
 }

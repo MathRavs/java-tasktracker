@@ -4,11 +4,12 @@ import cypher.tasktracker.data.database.models.TaskModel;
 import cypher.tasktracker.data.database.repositories.TaskRepository;
 import cypher.tasktracker.exceptions.EntityNotFoundException;
 import cypher.tasktracker.mappers.TaskMapper;
-import cypher.tasktracker.validation.AddTaskDTO;
-import cypher.tasktracker.validation.UpdateTaskDTO;
+import cypher.tasktracker.validation.DTO.AddTaskDTO;
+import cypher.tasktracker.validation.DTO.UpdateTaskDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TaskService {
@@ -40,8 +41,33 @@ public class TaskService {
         }
 
         var taskValue = task.get();
-        taskValue.setName(updateTaskDTO.getNewName());
+
+        if (updateTaskDTO.getNewName().isPresent()) {
+            taskValue.setName(updateTaskDTO.getNewName().get());
+        }
+
+        if (updateTaskDTO.getFinished().isPresent()) {
+            taskValue.setDone(updateTaskDTO.getFinished().get());
+        }
+
+        if (updateTaskDTO.getProgress().isPresent()) {
+            taskValue.setProgress(updateTaskDTO.getProgress().get().doubleValue());
+
+            if (taskValue.getProgress() == 100) {
+                taskValue.setDone(true);
+            }
+        }
+        
+        this.taskRepository.save(taskValue);
 
         return taskValue;
+    }
+
+    public Optional<TaskModel> findById(Long id) {
+        return this.taskRepository.findById(id);
+    }
+
+    public long countTasks() {
+        return taskRepository.count();
     }
 }

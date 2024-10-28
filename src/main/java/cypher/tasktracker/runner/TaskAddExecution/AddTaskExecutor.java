@@ -4,7 +4,7 @@ import cypher.tasktracker.runner.TaskListExecution.TaskListExecutor;
 import cypher.tasktracker.runner.core.AbstractTaskExecutor;
 import cypher.tasktracker.services.data.TaskService;
 import cypher.tasktracker.services.ui.UserInputService;
-import cypher.tasktracker.validation.AddTaskDTO;
+import cypher.tasktracker.validation.DTO.AddTaskDTO;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import org.slf4j.Logger;
@@ -59,7 +59,7 @@ public class AddTaskExecutor extends AbstractTaskExecutor {
                 }
                 wasLastInputValid = false;
             } else {
-                LOG.info("Adding the user");
+                LOG.info("Adding the task");
                 taskService.addTask(addTaskDTO);
                 taskListExecutor.execute();
                 break;
