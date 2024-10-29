@@ -57,7 +57,7 @@ public class TaskService {
                 taskValue.setDone(true);
             }
         }
-        
+
         this.taskRepository.save(taskValue);
 
         return taskValue;
@@ -70,4 +70,9 @@ public class TaskService {
     public long countTasks() {
         return taskRepository.count();
     }
+
+    public void deleteById(Long id) {
+        this.taskRepository.deleteById(id);
+    }
+
 }

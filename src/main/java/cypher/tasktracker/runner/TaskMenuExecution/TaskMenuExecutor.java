@@ -51,8 +51,8 @@ public class TaskMenuExecutor extends AbstractTaskExecutor {
 
     @Override
     public void execute() {
-
         LOG.info("What do you want to do ? ");
+
         DisplayUtils.displayChoices(this.actionList);
 
         String action = this.userInputService.getUserInput();
