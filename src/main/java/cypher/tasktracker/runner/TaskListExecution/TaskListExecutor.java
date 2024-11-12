@@ -1,13 +1,18 @@
 package cypher.tasktracker.runner.TaskListExecution;
 
+import cypher.tasktracker.data.database.models.TaskModel;
+import cypher.tasktracker.display.TaskDisplay;
 import cypher.tasktracker.runner.core.AbstractTaskExecutor;
+import cypher.tasktracker.runner.core.ArgsManager;
 import cypher.tasktracker.services.data.TaskService;
 import cypher.tasktracker.services.ui.UserInputService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.util.stream.IntStream;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Supplier;
 
 
 @Component
@@ -24,14 +29,38 @@ public class TaskListExecutor extends AbstractTaskExecutor {
     }
 
     @Override
-    public void execute() {
-        var tasks = taskService.findAll();
+    public void execute(String... args) {
+        var argsManager = new ArgsManager(args);
 
-        if (tasks.size() == 0) {
+        List<TaskModel> tasks = null;
+        tasks = this.getTasksDependingOnArgs(argsManager);
+
+        if (tasks.isEmpty()) {
             LOG.info("No tasks");
         } else {
-            IntStream.range(0, tasks.size())
-                    .forEach(i -> LOG.info(i + "." + tasks.get(i)));
+            TaskDisplay.displayTasks(tasks);
         }
+    }
+
+    private List<TaskModel> getTasksDependingOnArgs(ArgsManager argsManager) {
+        List<TaskModel> tasks = null;
+
+        Map<TaskListExecutionEnum, Supplier<List<TaskModel>>> taskOptionMap = Map.of(
+                TaskListExecutionEnum.DONE, taskService::findAllDone,
+                TaskListExecutionEnum.TODO, taskService::findAllTodo,
+                TaskListExecutionEnum.IN_PROGRESS, taskService::findAllInProgress,
+                TaskListExecutionEnum.ALL, taskService::findAll
+        );
+
+        boolean hasTargetActionKey = argsManager.hasAdditionalActionKey() && taskOptionMap.containsKey(
+                TaskListExecutionEnum.valueOf(argsManager.getArgs().get(1).toUpperCase())
+        );
+
+        if (hasTargetActionKey) {
+            tasks = taskOptionMap.get(TaskListExecutionEnum.valueOf(argsManager.getArgs().get(1).toUpperCase())).get();
+        } else {
+            tasks = taskService.findAll();
+        }
+        return tasks;
     }
 }

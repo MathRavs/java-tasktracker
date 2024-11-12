@@ -34,7 +34,7 @@ public class TaskDeleteExecutor extends AbstractTaskExecutor {
     }
 
     @Override
-    public void execute() {
+    public void execute(String... args) {
         if (taskService.countTasks() == 0) {
             LOG.info("There are no tasks to delete");
             return;

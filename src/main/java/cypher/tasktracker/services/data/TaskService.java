@@ -23,15 +23,27 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
-    public TaskModel addTask(AddTaskDTO addTaskDTO) {
-        return this.taskRepository.save(TaskMapper.map(addTaskDTO));
+    public List<TaskModel> findAllDone() {
+        return taskRepository.findAllByDoneInOrProgressIn(List.of(true), List.of(100.0));
+    }
+
+    public List<TaskModel> findAllTodo() {
+        return taskRepository.findAllByDoneInAndProgressIn(List.of(false), List.of(0.0));
+    }
+
+    public List<TaskModel> findAllInProgress() {
+        return taskRepository.findAllByDoneInOrProgressNotIn(List.of(false), List.of(100.0));
+    }
+
+    public void addTask(AddTaskDTO addTaskDTO) {
+        this.taskRepository.save(TaskMapper.map(addTaskDTO));
     }
 
     public TaskModel removeTask(Long id) {
         return this.taskRepository.removeById(id);
     }
 
-    public TaskModel updateTask(UpdateTaskDTO updateTaskDTO) {
+    public void updateTask(UpdateTaskDTO updateTaskDTO) {
         var id = updateTaskDTO.getId();
 
         var task = this.taskRepository.findById(id);
@@ -60,7 +72,6 @@ public class TaskService {
 
         this.taskRepository.save(taskValue);
 
-        return taskValue;
     }
 
     public Optional<TaskModel> findById(Long id) {

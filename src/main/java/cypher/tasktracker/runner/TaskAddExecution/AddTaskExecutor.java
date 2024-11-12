@@ -39,7 +39,7 @@ public class AddTaskExecutor extends AbstractTaskExecutor {
     }
 
     @Override
-    public void execute() {
+    public void execute(String... args) {
 
         boolean wasLastInputValid = true;
 

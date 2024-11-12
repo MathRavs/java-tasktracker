@@ -40,7 +40,7 @@ public class TaskUpdateExecutor extends AbstractTaskExecutor {
     }
 
     @Override
-    public void execute() {
+    public void execute(String... args) {
         if (taskService.countTasks() == 0) {
             LOG.error("There is actually not tasks to update ");
             return;

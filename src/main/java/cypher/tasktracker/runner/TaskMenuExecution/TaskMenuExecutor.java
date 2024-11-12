@@ -2,6 +2,7 @@ package cypher.tasktracker.runner.TaskMenuExecution;
 
 import cypher.tasktracker.runner.TaskAddExecution.AddTaskExecutor;
 import cypher.tasktracker.runner.TaskDeleteExecution.TaskDeleteExecutor;
+import cypher.tasktracker.runner.TaskListExecution.TaskListExecutionEnum;
 import cypher.tasktracker.runner.TaskListExecution.TaskListExecutor;
 import cypher.tasktracker.runner.TaskUpdateExecution.TaskUpdateExecutor;
 import cypher.tasktracker.runner.core.AbstractTaskExecutor;
@@ -29,7 +30,16 @@ public class TaskMenuExecutor extends AbstractTaskExecutor {
     private final ConfigurableApplicationContext context;
 
 
-    private final String[] actionList = {"List tasks", "Add a task", "Delete a task", "Update a task", "Exit"};
+    private final String[] actionList = {
+            "List all tasks",
+            "List done tasks",
+            "List ongoing tasks",
+            "List todo tasks",
+            "Add a task",
+            "Delete a task",
+            "Update a task",
+            "Exit"
+    };
     private final TaskService taskService;
 
     public TaskMenuExecutor(
@@ -50,7 +60,7 @@ public class TaskMenuExecutor extends AbstractTaskExecutor {
     }
 
     @Override
-    public void execute() {
+    public void execute(String... args) {
         LOG.info("What do you want to do ? ");
 
         DisplayUtils.displayChoices(this.actionList);
@@ -60,10 +70,13 @@ public class TaskMenuExecutor extends AbstractTaskExecutor {
         HashMap<String, Runnable> actionsMap = new HashMap<>();
 
         actionsMap.put("1", taskListExecutor::execute);
-        actionsMap.put("2", addTaskExecutor::execute);
-        actionsMap.put("3", taskDeleteExecutor::execute);
-        actionsMap.put("4", taskUpdateExecutor::execute);
-        actionsMap.put("5", () -> SpringApplication.exit(context, () -> 0));
+        actionsMap.put("2", () -> taskListExecutor.execute("list", TaskListExecutionEnum.DONE.getDescription()));
+        actionsMap.put("3", () -> taskListExecutor.execute("list", TaskListExecutionEnum.IN_PROGRESS.getDescription()));
+        actionsMap.put("4", () -> taskListExecutor.execute("list", TaskListExecutionEnum.TODO.getDescription()));
+        actionsMap.put("5", addTaskExecutor::execute);
+        actionsMap.put("6", taskDeleteExecutor::execute);
+        actionsMap.put("7", taskUpdateExecutor::execute);
+        actionsMap.put("8", () -> SpringApplication.exit(context, () -> 0));
 
         if (actionsMap.containsKey(action)) {
             actionsMap.get(action).run();

@@ -11,5 +11,5 @@ public abstract class AbstractTaskExecutor {
         this.userInputService = userInputService;
     }
 
-    protected abstract void execute();
+    protected abstract void execute(String... args);
 }
