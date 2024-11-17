@@ -1,14 +1,13 @@
 package cypher.tasktracker.runner.core;
 
-import cypher.tasktracker.services.ui.UserInputService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class AbstractTaskExecutor {
-    protected final UserInputService userInputService;
+    protected final UserInputManager userInputManager;
 
     @Autowired
-    protected AbstractTaskExecutor(final UserInputService userInputService) {
-        this.userInputService = userInputService;
+    protected AbstractTaskExecutor(final UserInputManager userInputManager) {
+        this.userInputManager = userInputManager;
     }
 
     protected abstract void execute(String... args);

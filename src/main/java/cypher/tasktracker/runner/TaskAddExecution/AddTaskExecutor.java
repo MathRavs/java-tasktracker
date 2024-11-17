@@ -3,8 +3,8 @@ package cypher.tasktracker.runner.TaskAddExecution;
 import cypher.tasktracker.dto.AddTaskDTO;
 import cypher.tasktracker.runner.TaskListExecution.TaskListExecutor;
 import cypher.tasktracker.runner.core.AbstractTaskExecutor;
+import cypher.tasktracker.runner.core.UserInputManager;
 import cypher.tasktracker.services.data.TaskService;
-import cypher.tasktracker.services.ui.UserInputService;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import org.slf4j.Logger;
@@ -27,12 +27,12 @@ public class AddTaskExecutor extends AbstractTaskExecutor {
     private final Validator validator;
 
     public AddTaskExecutor(
-            final UserInputService userInputService,
+            final UserInputManager userInputManager,
             final Validator validator,
             final TaskService taskService,
             final TaskListExecutor taskListExecutor
     ) {
-        super(userInputService);
+        super(userInputManager);
         this.validator = validator;
         this.taskService = taskService;
         this.taskListExecutor = taskListExecutor;
@@ -47,7 +47,7 @@ public class AddTaskExecutor extends AbstractTaskExecutor {
         while (true) {
             LOG.info(wasLastInputValid ? "input a name for the task" : "Please input a valid name for the task");
 
-            String name = this.userInputService.getUserInput();
+            String name = this.userInputManager.getUserInput();
             AddTaskDTO addTaskDTO = new AddTaskDTO(name.trim());
 
             Set<ConstraintViolation<AddTaskDTO>> violations = validator.validate(addTaskDTO);

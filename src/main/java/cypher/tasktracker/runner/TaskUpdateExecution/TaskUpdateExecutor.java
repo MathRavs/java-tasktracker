@@ -3,9 +3,9 @@ package cypher.tasktracker.runner.TaskUpdateExecution;
 import cypher.tasktracker.dto.UpdateTaskDTO;
 import cypher.tasktracker.runner.TaskListExecution.TaskListExecutor;
 import cypher.tasktracker.runner.core.AbstractTaskExecutor;
+import cypher.tasktracker.runner.core.UserInputManager;
 import cypher.tasktracker.runner.utils.DisplayUtils;
 import cypher.tasktracker.services.data.TaskService;
-import cypher.tasktracker.services.ui.UserInputService;
 import jakarta.validation.Validator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,12 +28,12 @@ public class TaskUpdateExecutor extends AbstractTaskExecutor {
 
 
     protected TaskUpdateExecutor(
-            final UserInputService userInputService,
+            final UserInputManager userInputManager,
             final TaskService taskService,
             final Validator validator,
             final TaskListExecutor taskListExecutor
     ) {
-        super(userInputService);
+        super(userInputManager);
         this.taskService = taskService;
         this.validator = validator;
         this.taskListExecutor = taskListExecutor;
@@ -49,7 +49,7 @@ public class TaskUpdateExecutor extends AbstractTaskExecutor {
         LOG.info("Which Task do you want to update ?");
         taskListExecutor.execute();
 
-        String taskId = this.userInputService.getUserInput();
+        String taskId = this.userInputManager.getUserInput();
         UpdateTaskDTO updateTaskDTO = new UpdateTaskDTO(taskId);
 
         var isValid = DisplayUtils.displayValidationViolations(validator, updateTaskDTO);
@@ -69,7 +69,7 @@ public class TaskUpdateExecutor extends AbstractTaskExecutor {
 
         DisplayUtils.displayChoices(actionList);
 
-        String choice = userInputService.getUserInput();
+        String choice = userInputManager.getUserInput();
 
         if (actionsMap.containsKey(choice)) {
             actionsMap.get(choice).run();
@@ -83,7 +83,7 @@ public class TaskUpdateExecutor extends AbstractTaskExecutor {
 
         while (true) {
             DisplayUtils.displayChoices(display);
-            String choice = userInputService.getUserInput();
+            String choice = userInputManager.getUserInput();
 
             if (choice.equals("1")) {
                 updateTaskDTO.setFinished(true);
@@ -106,7 +106,7 @@ public class TaskUpdateExecutor extends AbstractTaskExecutor {
     protected void updateName(final UpdateTaskDTO updateTaskDTO) {
         while (true) {
             LOG.info("Enter the new name");
-            String newName = userInputService.getUserInput();
+            String newName = userInputManager.getUserInput();
             updateTaskDTO.setNewName(newName);
 
             var isValid = DisplayUtils.displayValidationViolations(validator, updateTaskDTO);
@@ -124,7 +124,7 @@ public class TaskUpdateExecutor extends AbstractTaskExecutor {
     protected void updateProgression(final UpdateTaskDTO updateTaskDTO) {
         while (true) {
             LOG.info("Enter the new progression");
-            String progress = userInputService.getUserInput();
+            String progress = userInputManager.getUserInput();
 
             try {
                 updateTaskDTO.setProgress(progress);

@@ -5,7 +5,6 @@ import cypher.tasktracker.runner.TaskDeleteExecution.TaskDeleteExecutor;
 import cypher.tasktracker.runner.TaskListExecution.TaskListExecutor;
 import cypher.tasktracker.runner.TaskMenuExecution.TaskMenuExecutor;
 import cypher.tasktracker.runner.TaskUpdateExecution.TaskUpdateExecutor;
-import cypher.tasktracker.services.ui.UserInputService;
 import jakarta.annotation.PreDestroy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +23,7 @@ public class TaskRunner {
     private final AddTaskExecutor addTaskExecutor;
     private final TaskDeleteExecutor taskDeleteExecutor;
     private final TaskUpdateExecutor taskUpdateExecutor;
-    private final UserInputService userInputService;
+    private final UserInputManager userInputManager;
 
     private static Logger LOG = LoggerFactory
             .getLogger(TaskRunner.class);
@@ -37,14 +36,14 @@ public class TaskRunner {
             final TaskListExecutor taskListExecutor,
             final TaskUpdateExecutor taskUpdateExecutor,
             final AddTaskExecutor addTaskExecutor,
-            final UserInputService userInputService
+            final UserInputManager userInputManager
     ) {
         this.taskMenuExecutor = taskMenuExecutor;
         this.taskDeleteExecutor = taskDeleteExecutor;
         this.taskListExecutor = taskListExecutor;
         this.addTaskExecutor = addTaskExecutor;
         this.taskUpdateExecutor = taskUpdateExecutor;
-        this.userInputService = userInputService;
+        this.userInputManager = userInputManager;
     }
 
     public void run(String... args) throws Exception {

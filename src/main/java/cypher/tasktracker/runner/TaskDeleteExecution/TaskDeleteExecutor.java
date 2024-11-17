@@ -3,9 +3,9 @@ package cypher.tasktracker.runner.TaskDeleteExecution;
 import cypher.tasktracker.dto.DeleteTaskDTO;
 import cypher.tasktracker.runner.TaskListExecution.TaskListExecutor;
 import cypher.tasktracker.runner.core.AbstractTaskExecutor;
+import cypher.tasktracker.runner.core.UserInputManager;
 import cypher.tasktracker.runner.utils.DisplayUtils;
 import cypher.tasktracker.services.data.TaskService;
-import cypher.tasktracker.services.ui.UserInputService;
 import jakarta.validation.Validator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,12 +22,12 @@ public class TaskDeleteExecutor extends AbstractTaskExecutor {
             .getLogger(TaskDeleteExecutor.class);
 
     public TaskDeleteExecutor(
-            final UserInputService userInputService,
+            final UserInputManager userInputManager,
             final TaskListExecutor taskListExecutor,
             final TaskService taskService,
             final Validator validator
     ) {
-        super(userInputService);
+        super(userInputManager);
         this.taskListExecutor = taskListExecutor;
         this.validator = validator;
         this.taskService = taskService;
@@ -45,7 +45,7 @@ public class TaskDeleteExecutor extends AbstractTaskExecutor {
 
             this.taskListExecutor.execute();
 
-            var id = userInputService.getUserInput();
+            var id = userInputManager.getUserInput();
 
             var deleteTaskDTO = new DeleteTaskDTO(id);
 

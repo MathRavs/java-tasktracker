@@ -1,15 +1,15 @@
-package cypher.tasktracker.services.ui;
+package cypher.tasktracker.runner.core;
 
 import org.springframework.stereotype.Service;
 
 import java.util.Scanner;
 
 @Service
-public class UserInputService {
+public class UserInputManager {
 
     private final Scanner scanner;
 
-    public UserInputService(Scanner scanner) {
+    public UserInputManager(Scanner scanner) {
         this.scanner = scanner;
     }
 

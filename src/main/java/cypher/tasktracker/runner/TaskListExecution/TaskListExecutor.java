@@ -4,8 +4,8 @@ import cypher.tasktracker.data.database.models.TaskModel;
 import cypher.tasktracker.display.TaskDisplay;
 import cypher.tasktracker.runner.core.AbstractTaskExecutor;
 import cypher.tasktracker.runner.core.ArgsManager;
+import cypher.tasktracker.runner.core.UserInputManager;
 import cypher.tasktracker.services.data.TaskService;
-import cypher.tasktracker.services.ui.UserInputService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -23,8 +23,8 @@ public class TaskListExecutor extends AbstractTaskExecutor {
 
     private final TaskService taskService;
 
-    protected TaskListExecutor(final UserInputService userInputService, final TaskService taskService) {
-        super(userInputService);
+    protected TaskListExecutor(final UserInputManager userInputManager, final TaskService taskService) {
+        super(userInputManager);
         this.taskService = taskService;
     }
 
