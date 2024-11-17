@@ -8,7 +8,7 @@ import cypher.tasktracker.runner.TaskUpdateExecution.TaskUpdateExecutor;
 import cypher.tasktracker.runner.core.AbstractTaskExecutor;
 import cypher.tasktracker.runner.core.UserInputManager;
 import cypher.tasktracker.runner.utils.DisplayUtils;
-import cypher.tasktracker.services.data.TaskService;
+import cypher.tasktracker.services.core.ITaskService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -40,7 +40,7 @@ public class TaskMenuExecutor extends AbstractTaskExecutor {
             "Update a task",
             "Exit"
     };
-    private final TaskService taskService;
+    private final ITaskService taskService;
 
     public TaskMenuExecutor(
             final UserInputManager userInputManager,
@@ -49,7 +49,7 @@ public class TaskMenuExecutor extends AbstractTaskExecutor {
             final TaskUpdateExecutor taskUpdateExecutor,
             final TaskListExecutor taskListExecutor,
             final ConfigurableApplicationContext configurableApplicationContext,
-            final TaskService taskService) {
+            final ITaskService taskService) {
         super(userInputManager);
         this.addTaskExecutor = addTaskExecutor;
         this.taskDeleteExecutor = taskDeleteExecutor;

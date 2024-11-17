@@ -1,4 +1,4 @@
-package cypher.tasktracker.testing.tests.utils;
+package cypher.tasktracker.testing.tests.core;
 
 import cypher.tasktracker.testing.utils.core.StringUtils;
 import org.junit.jupiter.api.Test;

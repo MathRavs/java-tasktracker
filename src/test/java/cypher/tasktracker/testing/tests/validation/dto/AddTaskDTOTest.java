@@ -1,4 +1,4 @@
-package cypher.tasktracker.testing.tests.dto;
+package cypher.tasktracker.testing.tests.validation.dto;
 
 import cypher.tasktracker.dto.AddTaskDTO;
 import cypher.tasktracker.testing.utils.core.StringUtils;

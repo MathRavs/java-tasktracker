@@ -4,7 +4,7 @@ import cypher.tasktracker.dto.AddTaskDTO;
 import cypher.tasktracker.runner.TaskListExecution.TaskListExecutor;
 import cypher.tasktracker.runner.core.AbstractTaskExecutor;
 import cypher.tasktracker.runner.core.UserInputManager;
-import cypher.tasktracker.services.data.TaskService;
+import cypher.tasktracker.services.core.ITaskService;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import org.slf4j.Logger;
@@ -21,7 +21,7 @@ public class AddTaskExecutor extends AbstractTaskExecutor {
     private static Logger LOG = LoggerFactory
             .getLogger(AddTaskExecutor.class);
 
-    private final TaskService taskService;
+    private final ITaskService taskService;
     private final TaskListExecutor taskListExecutor;
 
     private final Validator validator;
@@ -29,7 +29,7 @@ public class AddTaskExecutor extends AbstractTaskExecutor {
     public AddTaskExecutor(
             final UserInputManager userInputManager,
             final Validator validator,
-            final TaskService taskService,
+            final ITaskService taskService,
             final TaskListExecutor taskListExecutor
     ) {
         super(userInputManager);

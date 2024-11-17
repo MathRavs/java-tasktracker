@@ -5,7 +5,7 @@ import cypher.tasktracker.runner.TaskListExecution.TaskListExecutor;
 import cypher.tasktracker.runner.core.AbstractTaskExecutor;
 import cypher.tasktracker.runner.core.UserInputManager;
 import cypher.tasktracker.runner.utils.DisplayUtils;
-import cypher.tasktracker.services.data.TaskService;
+import cypher.tasktracker.services.core.ITaskService;
 import jakarta.validation.Validator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +20,7 @@ public class TaskUpdateExecutor extends AbstractTaskExecutor {
     private static Logger LOG = LoggerFactory
             .getLogger(TaskUpdateExecutor.class);
 
-    private final TaskService taskService;
+    private final ITaskService taskService;
     private final Validator validator;
     private final TaskListExecutor taskListExecutor;
 
@@ -29,7 +29,7 @@ public class TaskUpdateExecutor extends AbstractTaskExecutor {
 
     protected TaskUpdateExecutor(
             final UserInputManager userInputManager,
-            final TaskService taskService,
+            final ITaskService taskService,
             final Validator validator,
             final TaskListExecutor taskListExecutor
     ) {

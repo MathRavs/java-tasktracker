@@ -6,13 +6,14 @@ import cypher.tasktracker.dto.AddTaskDTO;
 import cypher.tasktracker.dto.UpdateTaskDTO;
 import cypher.tasktracker.exceptions.EntityNotFoundException;
 import cypher.tasktracker.mappers.TaskMapper;
+import cypher.tasktracker.services.core.ITaskService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class TaskService {
+public class TaskService implements ITaskService {
     private final TaskRepository taskRepository;
 
     public TaskService(final TaskRepository taskRepository) {
@@ -71,7 +72,6 @@ public class TaskService {
         }
 
         this.taskRepository.save(taskValue);
-
     }
 
     public Optional<TaskModel> findById(Long id) {
