@@ -1,8 +1,8 @@
 package cypher.tasktracker.services.core;
 
 import cypher.tasktracker.data.database.models.TaskModel;
-import cypher.tasktracker.dto.AddTaskDTO;
-import cypher.tasktracker.dto.UpdateTaskDTO;
+import cypher.tasktracker.validation.dto.AddTaskDTO;
+import cypher.tasktracker.validation.dto.UpdateTaskDTO;
 
 import java.util.List;
 import java.util.Optional;

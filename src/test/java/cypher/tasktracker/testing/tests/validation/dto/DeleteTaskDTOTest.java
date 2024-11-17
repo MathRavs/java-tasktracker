@@ -1,6 +1,6 @@
 package cypher.tasktracker.testing.tests.validation.dto;
 
-import cypher.tasktracker.dto.DeleteTaskDTO;
+import cypher.tasktracker.validation.dto.DeleteTaskDTO;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;

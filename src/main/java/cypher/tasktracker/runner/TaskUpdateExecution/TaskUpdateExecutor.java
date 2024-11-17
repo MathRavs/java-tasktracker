@@ -1,11 +1,11 @@
 package cypher.tasktracker.runner.TaskUpdateExecution;
 
-import cypher.tasktracker.dto.UpdateTaskDTO;
 import cypher.tasktracker.runner.TaskListExecution.TaskListExecutor;
 import cypher.tasktracker.runner.core.AbstractTaskExecutor;
 import cypher.tasktracker.runner.core.UserInputManager;
 import cypher.tasktracker.runner.utils.DisplayUtils;
 import cypher.tasktracker.services.core.ITaskService;
+import cypher.tasktracker.validation.dto.UpdateTaskDTO;
 import jakarta.validation.Validator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
