@@ -52,9 +52,9 @@ public class TaskDeleteExecutor extends AbstractTaskExecutor {
             var isValid = DisplayUtils.displayValidationViolations(validator, deleteTaskDTO);
 
             if (isValid) {
-                var task = taskService.findById(deleteTaskDTO.getId().get());
+                var task = taskService.findById(deleteTaskDTO.getId());
                 if (task.isPresent()) {
-                    taskService.deleteById(deleteTaskDTO.getId().get());
+                    taskService.deleteById(deleteTaskDTO.getId());
                     break;
                 } else {
                     LOG.error("the task identified by " + id + " does not exist");

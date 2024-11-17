@@ -3,8 +3,6 @@ package cypher.tasktracker.validation.dto;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 
-import java.util.Optional;
-
 public class DeleteTaskDTO {
 
     @NotEmpty
@@ -15,7 +13,7 @@ public class DeleteTaskDTO {
         this.id = id;
     }
 
-    public Optional<Long> getId() {
-        return id == null ? Optional.empty() : Optional.of(Long.parseLong(id));
+    public Long getId() {
+        return Long.parseLong(id);
     }
 }
