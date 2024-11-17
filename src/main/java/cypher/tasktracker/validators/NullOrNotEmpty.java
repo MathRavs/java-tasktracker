@@ -1,4 +1,4 @@
-package cypher.tasktracker.testing.validation.validators;
+package cypher.tasktracker.validators;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;

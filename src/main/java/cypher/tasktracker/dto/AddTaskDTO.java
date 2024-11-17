@@ -1,4 +1,4 @@
-package cypher.tasktracker.testing.validation.dto;
+package cypher.tasktracker.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;

@@ -2,10 +2,10 @@ package cypher.tasktracker.services.data;
 
 import cypher.tasktracker.data.database.models.TaskModel;
 import cypher.tasktracker.data.database.repositories.TaskRepository;
+import cypher.tasktracker.dto.AddTaskDTO;
+import cypher.tasktracker.dto.UpdateTaskDTO;
 import cypher.tasktracker.exceptions.EntityNotFoundException;
 import cypher.tasktracker.mappers.TaskMapper;
-import cypher.tasktracker.testing.validation.dto.AddTaskDTO;
-import cypher.tasktracker.testing.validation.dto.UpdateTaskDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

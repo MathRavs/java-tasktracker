@@ -1,11 +1,11 @@
 package cypher.tasktracker.runner.TaskDeleteExecution;
 
+import cypher.tasktracker.dto.DeleteTaskDTO;
 import cypher.tasktracker.runner.TaskListExecution.TaskListExecutor;
 import cypher.tasktracker.runner.core.AbstractTaskExecutor;
 import cypher.tasktracker.runner.utils.DisplayUtils;
 import cypher.tasktracker.services.data.TaskService;
 import cypher.tasktracker.services.ui.UserInputService;
-import cypher.tasktracker.testing.validation.dto.DeleteTaskDTO;
 import jakarta.validation.Validator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

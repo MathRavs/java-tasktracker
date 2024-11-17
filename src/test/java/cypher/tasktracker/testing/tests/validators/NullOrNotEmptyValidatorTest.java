@@ -1,5 +1,6 @@
-package cypher.tasktracker.testing.validation.validators;
+package cypher.tasktracker.testing.tests.validators;
 
+import cypher.tasktracker.validators.NullOrNotEmpty;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
