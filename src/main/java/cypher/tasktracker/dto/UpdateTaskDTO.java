@@ -14,6 +14,7 @@ public class UpdateTaskDTO {
     private String id;
 
     @NullOrNotEmpty
+    @Size(max = 200)
     private String newName;
 
     @Nullable
@@ -29,11 +30,7 @@ public class UpdateTaskDTO {
     }
 
     public Long getId() {
-        return id != null ? Long.parseLong(id) : null;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+        return Long.parseLong(id);
     }
 
     public Optional<String> getNewName() {
@@ -58,12 +55,5 @@ public class UpdateTaskDTO {
 
     public void setProgress(String progress) {
         this.progress = Long.parseLong(progress);
-    }
-
-
-    public void reset() {
-        this.isFinished = null;
-        this.progress = null;
-        this.newName = null;
     }
 }
