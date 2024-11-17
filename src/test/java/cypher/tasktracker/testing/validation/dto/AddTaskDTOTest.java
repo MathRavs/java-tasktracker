@@ -1,5 +1,6 @@
-package cypher.tasktracker.validation.dto;
+package cypher.tasktracker.testing.validation.dto;
 
+import cypher.tasktracker.testing.utils.core.StringUtils;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
@@ -10,25 +11,24 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class DeleteTaskDTOTest {
+public class AddTaskDTOTest {
     private final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 
     @Test
-    void TestGivenIdIsCorrect() {
-        var deleteTaskDTO = new DeleteTaskDTO("1");
+    void TestGivenNameIsCorrect() {
+        var addTaskDto = new AddTaskDTO("test");
 
-        Set<ConstraintViolation<DeleteTaskDTO>> violations = validator.validate(deleteTaskDTO);
+        Set<ConstraintViolation<AddTaskDTO>> violations = validator.validate(addTaskDto);
 
         assertTrue(violations.isEmpty());
     }
 
     @Test
-    void TestGivenIdIsIncorrect() {
-        var deleteTaskDTO = new DeleteTaskDTO("at");
+    void TestGivenNameIsIncorrect() {
+        var addTaskDto = new AddTaskDTO(StringUtils.buildTestString(201));
 
-        Set<ConstraintViolation<DeleteTaskDTO>> violations = validator.validate(deleteTaskDTO);
+        Set<ConstraintViolation<AddTaskDTO>> violations = validator.validate(addTaskDto);
 
         assertFalse(violations.isEmpty());
     }
-
 }

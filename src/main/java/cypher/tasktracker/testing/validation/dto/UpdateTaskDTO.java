@@ -1,6 +1,6 @@
-package cypher.tasktracker.validation.dto;
+package cypher.tasktracker.testing.validation.dto;
 
-import cypher.tasktracker.validation.validators.NullOrNotEmpty;
+import cypher.tasktracker.testing.validation.validators.NullOrNotEmpty;
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.*;
 
