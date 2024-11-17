@@ -1,7 +1,7 @@
 package cypher.tasktracker.mappers;
 
 import cypher.tasktracker.data.database.models.TaskModel;
-import cypher.tasktracker.validation.DTO.AddTaskDTO;
+import cypher.tasktracker.validation.dto.AddTaskDTO;
 
 
 public class TaskMapper {

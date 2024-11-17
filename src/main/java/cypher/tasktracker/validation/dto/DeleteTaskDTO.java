@@ -1,4 +1,4 @@
-package cypher.tasktracker.validation.DTO;
+package cypher.tasktracker.validation.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
@@ -14,7 +14,7 @@ public class DeleteTaskDTO {
     public DeleteTaskDTO(final String id) {
         this.id = id;
     }
-    
+
     public Optional<Long> getId() {
         return id == null ? Optional.empty() : Optional.of(Long.parseLong(id));
     }
