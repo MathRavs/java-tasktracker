@@ -8,23 +8,23 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ITaskService {
-    public List<TaskModel> findAll();
+    List<TaskModel> findAll();
 
-    public List<TaskModel> findAllDone();
+    List<TaskModel> findAllDone();
 
-    public List<TaskModel> findAllTodo();
+    List<TaskModel> findAllTodo();
 
-    public List<TaskModel> findAllInProgress();
+    List<TaskModel> findAllInProgress();
 
-    public void addTask(AddTaskDTO addTaskDTO);
+    void addTask(AddTaskDTO addTaskDTO);
 
-    public TaskModel removeTask(Long id);
+    TaskModel removeTask(Long id);
 
-    public void updateTask(UpdateTaskDTO updateTaskDTO);
+    void updateTask(UpdateTaskDTO updateTaskDTO);
 
-    public Optional<TaskModel> findById(Long id);
+    Optional<TaskModel> findById(Long id);
 
-    public long countTasks();
+    long countTasks();
 
-    public void deleteById(Long id);
+    void deleteById(Long id);
 }
