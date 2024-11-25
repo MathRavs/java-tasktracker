@@ -22,8 +22,4 @@ public class ArgsManager {
     public boolean hasAdditionalActionKey() {
         return this.args.size() > 1;
     }
-
-    public boolean hasArgs() {
-        return this.args.isEmpty();
-    }
 }

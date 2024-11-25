@@ -1,12 +1,12 @@
 package cypher.tasktracker.runner.TaskMenuExecution;
 
-import cypher.tasktracker.runner.TaskAddExecution.AddTaskExecutor;
 import cypher.tasktracker.runner.TaskDeleteExecution.TaskDeleteExecutor;
 import cypher.tasktracker.runner.TaskListExecution.TaskListExecutionEnum;
 import cypher.tasktracker.runner.TaskListExecution.TaskListExecutor;
 import cypher.tasktracker.runner.TaskUpdateExecution.TaskUpdateExecutor;
 import cypher.tasktracker.runner.core.AbstractTaskExecutor;
 import cypher.tasktracker.runner.core.UserInputManager;
+import cypher.tasktracker.runner.taskAdd.AddTaskExecutor;
 import cypher.tasktracker.runner.utils.DisplayUtils;
 import cypher.tasktracker.services.core.ITaskService;
 import org.slf4j.Logger;
@@ -73,7 +73,12 @@ public class TaskMenuExecutor extends AbstractTaskExecutor {
         actionsMap.put("2", () -> taskListExecutor.execute("list", TaskListExecutionEnum.DONE.getDescription()));
         actionsMap.put("3", () -> taskListExecutor.execute("list", TaskListExecutionEnum.IN_PROGRESS.getDescription()));
         actionsMap.put("4", () -> taskListExecutor.execute("list", TaskListExecutionEnum.TODO.getDescription()));
-        actionsMap.put("5", addTaskExecutor::execute);
+        actionsMap.put("5", () -> {
+            try {
+                addTaskExecutor.execute("list");
+            } catch (Exception ignored) {
+            }
+        });
         actionsMap.put("6", taskDeleteExecutor::execute);
         actionsMap.put("7", taskUpdateExecutor::execute);
         actionsMap.put("8", () -> SpringApplication.exit(context, () -> 0));

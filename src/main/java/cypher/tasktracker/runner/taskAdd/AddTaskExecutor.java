@@ -1,4 +1,4 @@
-package cypher.tasktracker.runner.TaskAddExecution;
+package cypher.tasktracker.runner.taskAdd;
 
 import cypher.tasktracker.runner.TaskListExecution.TaskListExecutor;
 import cypher.tasktracker.runner.core.AbstractTaskExecutor;
@@ -16,7 +16,8 @@ import java.util.Set;
 
 @Component
 public class AddTaskExecutor extends AbstractTaskExecutor {
-
+    private final Object lock = new Object();
+    private boolean wasLastInputValid = true;
 
     private static Logger LOG = LoggerFactory
             .getLogger(AddTaskExecutor.class);
@@ -40,11 +41,9 @@ public class AddTaskExecutor extends AbstractTaskExecutor {
 
     @Override
     public void execute(String... args) {
+        wasLastInputValid = true;
 
-        boolean wasLastInputValid = true;
-
-
-        while (true) {
+        while (this.shouldKeepRunning()) {
             LOG.info(wasLastInputValid ? "input a name for the task" : "Please input a valid name for the task");
 
             String name = this.userInputManager.getUserInput();
@@ -52,12 +51,12 @@ public class AddTaskExecutor extends AbstractTaskExecutor {
 
             Set<ConstraintViolation<AddTaskDTO>> violations = validator.validate(addTaskDTO);
 
-            // Step 5: Process the validation result
             if (!violations.isEmpty()) {
                 for (ConstraintViolation<AddTaskDTO> violation : violations) {
                     LOG.info("The " + violation.getPropertyPath() + " " + violation.getMessage());
                 }
                 wasLastInputValid = false;
+                this.incrementCurrentStep();
             } else {
                 LOG.info("Adding the task");
                 taskService.addTask(addTaskDTO);
@@ -65,6 +64,10 @@ public class AddTaskExecutor extends AbstractTaskExecutor {
                 break;
             }
         }
+    }
 
+
+    public boolean wasLastInputValid() {
+        return wasLastInputValid;
     }
 }

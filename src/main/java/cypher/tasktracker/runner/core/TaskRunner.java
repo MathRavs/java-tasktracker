@@ -1,10 +1,10 @@
 package cypher.tasktracker.runner.core;
 
-import cypher.tasktracker.runner.TaskAddExecution.AddTaskExecutor;
 import cypher.tasktracker.runner.TaskDeleteExecution.TaskDeleteExecutor;
 import cypher.tasktracker.runner.TaskListExecution.TaskListExecutor;
 import cypher.tasktracker.runner.TaskMenuExecution.TaskMenuExecutor;
 import cypher.tasktracker.runner.TaskUpdateExecution.TaskUpdateExecutor;
+import cypher.tasktracker.runner.taskAdd.AddTaskExecutor;
 import jakarta.annotation.PreDestroy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +23,6 @@ public class TaskRunner {
     private final AddTaskExecutor addTaskExecutor;
     private final TaskDeleteExecutor taskDeleteExecutor;
     private final TaskUpdateExecutor taskUpdateExecutor;
-    private final UserInputManager userInputManager;
 
     private static Logger LOG = LoggerFactory
             .getLogger(TaskRunner.class);
@@ -35,15 +34,13 @@ public class TaskRunner {
             final TaskDeleteExecutor taskDeleteExecutor,
             final TaskListExecutor taskListExecutor,
             final TaskUpdateExecutor taskUpdateExecutor,
-            final AddTaskExecutor addTaskExecutor,
-            final UserInputManager userInputManager
+            final AddTaskExecutor addTaskExecutor
     ) {
         this.taskMenuExecutor = taskMenuExecutor;
         this.taskDeleteExecutor = taskDeleteExecutor;
         this.taskListExecutor = taskListExecutor;
         this.addTaskExecutor = addTaskExecutor;
         this.taskUpdateExecutor = taskUpdateExecutor;
-        this.userInputManager = userInputManager;
     }
 
     public void run(String... args) throws Exception {
