@@ -1,10 +1,10 @@
 package cypher.tasktracker.runner.core;
 
-import cypher.tasktracker.runner.TaskDeleteExecution.TaskDeleteExecutor;
 import cypher.tasktracker.runner.TaskListExecution.TaskListExecutor;
 import cypher.tasktracker.runner.TaskMenuExecution.TaskMenuExecutor;
 import cypher.tasktracker.runner.TaskUpdateExecution.TaskUpdateExecutor;
 import cypher.tasktracker.runner.taskAdd.AddTaskExecutor;
+import cypher.tasktracker.runner.taskDelete.TaskDeleteExecutor;
 import jakarta.annotation.PreDestroy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

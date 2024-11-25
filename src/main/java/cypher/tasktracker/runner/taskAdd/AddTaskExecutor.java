@@ -42,6 +42,7 @@ public class AddTaskExecutor extends AbstractTaskExecutor {
     @Override
     public void execute(String... args) {
         wasLastInputValid = true;
+        this.setCurrentSteps(0);
 
         while (this.shouldKeepRunning()) {
             LOG.info(wasLastInputValid ? "input a name for the task" : "Please input a valid name for the task");

@@ -1,12 +1,12 @@
 package cypher.tasktracker.runner.TaskMenuExecution;
 
-import cypher.tasktracker.runner.TaskDeleteExecution.TaskDeleteExecutor;
 import cypher.tasktracker.runner.TaskListExecution.TaskListExecutionEnum;
 import cypher.tasktracker.runner.TaskListExecution.TaskListExecutor;
 import cypher.tasktracker.runner.TaskUpdateExecution.TaskUpdateExecutor;
 import cypher.tasktracker.runner.core.AbstractTaskExecutor;
 import cypher.tasktracker.runner.core.UserInputManager;
 import cypher.tasktracker.runner.taskAdd.AddTaskExecutor;
+import cypher.tasktracker.runner.taskDelete.TaskDeleteExecutor;
 import cypher.tasktracker.runner.utils.DisplayUtils;
 import cypher.tasktracker.services.core.ITaskService;
 import org.slf4j.Logger;

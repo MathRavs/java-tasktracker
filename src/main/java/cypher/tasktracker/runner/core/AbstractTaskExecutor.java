@@ -10,6 +10,6 @@ public abstract class AbstractTaskExecutor extends InterruptibleTaskExecutor {
         this.userInputManager = userInputManager;
     }
 
-    protected abstract void execute(String... args) throws InterruptedException;
+    protected abstract void execute(String... args);
 
 }

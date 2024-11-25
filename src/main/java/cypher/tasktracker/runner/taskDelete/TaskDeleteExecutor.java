@@ -1,4 +1,4 @@
-package cypher.tasktracker.runner.TaskDeleteExecution;
+package cypher.tasktracker.runner.taskDelete;
 
 import cypher.tasktracker.runner.TaskListExecution.TaskListExecutor;
 import cypher.tasktracker.runner.core.AbstractTaskExecutor;
@@ -35,12 +35,13 @@ public class TaskDeleteExecutor extends AbstractTaskExecutor {
 
     @Override
     public void execute(String... args) {
+        this.setCurrentSteps(0);
         if (taskService.countTasks() == 0) {
             LOG.info("There are no tasks to delete");
             return;
         }
 
-        while (true) {
+        while (this.shouldKeepRunning()) {
             LOG.info("Which task do you want to delete?");
 
             this.taskListExecutor.execute();
@@ -58,6 +59,7 @@ public class TaskDeleteExecutor extends AbstractTaskExecutor {
                     break;
                 } else {
                     LOG.error("the task identified by " + id + " does not exist");
+                    this.incrementCurrentStep();
                 }
             }
         }
