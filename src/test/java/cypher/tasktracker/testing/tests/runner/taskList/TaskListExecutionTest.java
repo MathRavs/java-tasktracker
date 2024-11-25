@@ -47,6 +47,7 @@ public class TaskListExecutionTest {
 
     @Test
     void ShouldFindDone() {
+        
         Map<TaskListExecutionEnum, Supplier<List<TaskModel>>> callMap = Map.of(
                 TaskListExecutionEnum.DONE, () -> verify(taskService).findAllDone(),
                 TaskListExecutionEnum.TODO, () -> verify(taskService).findAllTodo(),
